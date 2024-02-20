@@ -20,6 +20,9 @@ public class QRCodeGeneratorApp extends JFrame{
 
 
     private JTextField urlTextField;
+    private JTextField nameTextField;
+    private JTextField dobTextField;
+    private JTextField emailTextField;
     private JButton generateButton;
 
     public QRCodeGeneratorApp() {
@@ -28,14 +31,35 @@ public class QRCodeGeneratorApp extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(2, 1));
+        mainPanel.setLayout(new GridLayout(6, 2));
 
-        // Text field for entering URL
+        // Form header
+        JLabel formHeader = new JLabel("QR Code Generator Form");
+        formHeader.setFont(new Font("Arial", Font.BOLD, 16));
+        mainPanel.add(formHeader);
+        mainPanel.add(new JLabel()); // Placeholder
+
+        JLabel nameLabel = new JLabel("Name:");
+        mainPanel.add(nameLabel);
+        nameTextField = new JTextField();
+        mainPanel.add(nameTextField);
+
+        JLabel dobLabel = new JLabel("Date of Birth:");
+        mainPanel.add(dobLabel);
+        dobTextField = new JTextField();
+        mainPanel.add(dobTextField);
+
+        JLabel emailLabel = new JLabel("Email:");
+        mainPanel.add(emailLabel);
+        emailTextField = new JTextField();
+        mainPanel.add(emailTextField);
+
+        JLabel urlLabel = new JLabel("URL:");
+        mainPanel.add(urlLabel);
         urlTextField = new JTextField();
         mainPanel.add(urlTextField);
 
-        // Button to generate QR code
-        generateButton = new JButton("Generate QR Code");
+        JButton generateButton = new JButton("Generate QR Code");
         generateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +67,15 @@ public class QRCodeGeneratorApp extends JFrame{
             }
         });
         mainPanel.add(generateButton);
+
+        JButton clearButton = new JButton("Clear Form");
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clearForm();
+            }
+        });
+        mainPanel.add(clearButton);
 
         getContentPane().add(mainPanel);
     }
@@ -100,7 +133,12 @@ public class QRCodeGeneratorApp extends JFrame{
                 path.substring(path.lastIndexOf('.') + 1),
                 new File(path));
     }
-
+    private void clearForm() {
+        nameTextField.setText("");
+        dobTextField.setText("");
+        emailTextField.setText("");
+        urlTextField.setText("");
+    }
     // Driver code
     public static void main(String[] args)
             throws Exception
