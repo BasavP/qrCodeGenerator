@@ -82,6 +82,17 @@ public class QRCodeGeneratorApp extends JFrame{
 
     private void generateQRCode() {
         String url = urlTextField.getText();
+
+        if(emailTextField.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter the email", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if(nameTextField.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter the name", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        if(url.isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter a URL", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
         if (!url.isEmpty()) {
             // Call your method to generate QR code here
             String imagePath = generateQRCodeImage(url);
@@ -91,8 +102,6 @@ public class QRCodeGeneratorApp extends JFrame{
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to generate QR code", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please enter a URL", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -143,28 +152,7 @@ public class QRCodeGeneratorApp extends JFrame{
     public static void main(String[] args)
             throws Exception
     {
-//
-//        // The data that the QR code will contain
-//        String data = "www.geeksforgeeks.org";
-//
-//        // The path where the image will get saved
-//        String path = "demo123.png";
-//
-//        // Encoding charset
-//        String charset = "UTF-8";
-//
-//        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
-//                = new HashMap<EncodeHintType,
-//                ErrorCorrectionLevel>();
-//
-//        hashMap.put(EncodeHintType.ERROR_CORRECTION,
-//                ErrorCorrectionLevel.L);
 
-        // Create the QR code and save
-        // in the specified folder
-        // as a jpg file
-//        createQR(data, path, charset, hashMap, 200, 200);
-//        System.out.println("QR Code Generated!!! ");
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
